@@ -1,15 +1,16 @@
 class Game
 
-  attr_accessor :p1, :p2, :turn
+  # attr_accessor :p1, :p2, :turn
+  attr_accessor :turn
 
   def initialize
     @p1 = Player.new(1)
     @p2 = Player.new(2)
-    @turn = p1
+    @turn = @p1
   end
 
   def start
-    puts "\nNew game! \n#{p1.name}: #{p1.score}/3 vs #{p2.name}: #{p2.score}/3"
+    puts "\nNew game! \n#{@p1.name}: #{@p1.score}/3 vs #{@p2.name}: #{@p2.score}/3"
     new_turn
   end
 
@@ -39,27 +40,27 @@ class Game
   end
 
   def turn_check
-    if turn == p1
-      @turn = p2
+    if turn == @p1
+      @turn = @p2
     else
-      @turn = p1
+      @turn = @p1
     end
   end
 
   def game_over
-    if p1.score == 0
-      winner = p2
+    if @p1.score == 0
+      winner = @p2
     else
-      winner = p1
+      winner = @p1
     end
     puts "#{winner.name} wins with a score of #{winner.score}/3\n----- GAME OVER -----\nGood bye!"
   end
 
   def check_scores
-    if p1.score <= 0 || p2.score <= 0
+    if @p1.score <= 0 || @p2.score <= 0
       game_over
     else
-      puts "#{p1.name}: #{p1.score}/3 vs #{p2.name}: #{p2.score}/3"
+      puts "#{@p1.name}: #{@p1.score}/3 vs #{@p2.name}: #{@p2.score}/3"
       new_turn
     end
   end
